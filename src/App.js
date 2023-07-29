@@ -1,4 +1,4 @@
-import { useFetch } from './useFetch';
+import { useFetch } from './hooks/useFetch';
 
 function App() {
   const { data, isLoading, error, refetch } = useFetch(
@@ -30,3 +30,4 @@ function App() {
 }
 
 export default App;
+
