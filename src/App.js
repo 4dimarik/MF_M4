@@ -1,4 +1,4 @@
-import { useViewportSize } from '@mantine/hooks';
+import { useViewportSize } from './hooks/useViewportSize';
 
 function App() {
   const { height, width } = useViewportSize();
