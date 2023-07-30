@@ -1,4 +1,4 @@
-import { useLocalStorage } from './useLocalStorage';
+import { useLocalStorage } from './hooks/useLocalStorage';
 
 function App() {
   const [token, { setItem, removeItem }] = useLocalStorage('token');
