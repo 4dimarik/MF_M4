@@ -1,5 +1,13 @@
+import { useViewportSize } from '@mantine/hooks';
+
 function App() {
-  return <></>;
+  const { height, width } = useViewportSize();
+
+  return (
+    <>
+      Width: {width}, height: {height}
+    </>
+  );
 }
 
 export default App;
