@@ -1,5 +1,6 @@
-import { useState } from 'react';
 import './app.css';
+import { useState } from 'react';
+import Link from './components/Link';
 
 function App() {
   const [form, setForm] = useState('singIn');
@@ -12,21 +13,17 @@ function App() {
     <main className="container mx-auto">
       <div className="max-w-[500px] pt-5 mx-auto">
         <div>
-          <a
-            href="#singUp"
+          <Link
+            href="#singIp"
             onClick={() => handleFormView('singIn')}
-            className="underline text-sky-500 hover:text-sky-800"
-          >
-            SingIn
-          </a>
+            label="SingIn"
+          />
           {` / `}
-          <a
+          <Link
             href="#singUp"
             onClick={() => handleFormView('singUp')}
-            className="underline text-sky-500 hover:text-sky-800"
-          >
-            SingUp
-          </a>
+            label="SingUp"
+          />
         </div>
       </div>
     </main>
