@@ -1,6 +1,7 @@
 import './app.css';
 import { useState } from 'react';
 import Link from './components/Link';
+import TextInput from './components/TextInput';
 
 function App() {
   const [form, setForm] = useState('singIn');
@@ -13,16 +14,33 @@ function App() {
     <main className="container mx-auto">
       <div className="max-w-[500px] pt-5 mx-auto">
         <div>
-          <Link
-            href="#singIp"
-            onClick={() => handleFormView('singIn')}
-            label="SingIn"
-          />
+          {form === 'singIn' ? (
+            'SingIn'
+          ) : (
+            <Link
+              href="#singIn"
+              onClick={() => handleFormView('singIn')}
+              label="SingIn"
+            />
+          )}
           {` / `}
-          <Link
-            href="#singUp"
-            onClick={() => handleFormView('singUp')}
-            label="SingUp"
+          {form === 'singUp' ? (
+            'SingUp'
+          ) : (
+            <Link
+              href="#singUp"
+              onClick={() => handleFormView('singUp')}
+              label="SingUp"
+            />
+          )}
+        </div>
+        <div>
+          <TextInput
+            placeholder={'123'}
+            label={'Name'}
+            description="Какой то описание"
+            error="asdkljsdksjd"
+            withAsterisk={false}
           />
         </div>
       </div>
