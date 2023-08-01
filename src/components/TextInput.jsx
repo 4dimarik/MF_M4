@@ -39,6 +39,9 @@ function TextInput({
   disabled,
   withAsterisk,
   icon,
+  name,
+  value,
+  onChange,
 }) {
   // Динамический класс для радиуса границ (input)
   const radiusSize = radius ? radiusSizes[radius] : '';
@@ -68,7 +71,7 @@ function TextInput({
       {description && <div className="caption">{description}</div>}
       <div className="relative">
         {icon && (
-          <div className="flex items-center absolute h-[100%] ml-1">
+          <div className="pointer-events-none flex items-center inset-y-0 left-0 absolute h-[100%] pl-2">
             <div className="h-5 w-5 text-gray-400">{icon}</div>
           </div>
         )}
@@ -77,6 +80,9 @@ function TextInput({
           placeholder={placeholder}
           className={`${inputClass[variant]} `}
           disabled={disabled}
+          name={name}
+          onChange={onChange}
+          value={value}
         />
       </div>
 
@@ -96,6 +102,8 @@ TextInput.defaultProps = {
   radius: 'base',
   withAsterisk: false,
   icon: null,
+  name: '',
+  value: '',
 };
 
 TextInput.propTypes = {
@@ -109,6 +117,9 @@ TextInput.propTypes = {
   disabled: PropTypes.bool,
   withAsterisk: PropTypes.bool,
   icon: PropTypes.object,
+  name: PropTypes.string.isRequired,
+  value: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default TextInput;
