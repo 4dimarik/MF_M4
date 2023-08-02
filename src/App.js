@@ -2,6 +2,7 @@ import './app.css';
 import { useState } from 'react';
 import Link from './components/Link';
 import SignIn from './components/SignIn';
+import SignUp from './components/SignUp';
 
 function App() {
   const [form, setForm] = useState('signIn');
@@ -9,8 +10,8 @@ function App() {
   const handleFormView = (name) => setForm(name);
 
   const forms = {
-    singIn: <SignIn />,
-    singUp: <></>,
+    signIn: <SignIn />,
+    signUp: <SignUp />,
   };
 
   return (
@@ -37,7 +38,7 @@ function App() {
             />
           )}
         </div>
-        <div className="p-5 bg-stone-300 rounded-md">{forms[form]}</div>
+        <div className="p-5 bg-stone-200 rounded-md">{forms[form]}</div>
       </div>
     </main>
   );
