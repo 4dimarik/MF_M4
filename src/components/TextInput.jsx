@@ -119,7 +119,7 @@ TextInput.propTypes = {
   icon: PropTypes.object,
   name: PropTypes.string.isRequired,
   value: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
 };
 
 export default TextInput;
