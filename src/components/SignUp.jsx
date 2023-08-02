@@ -16,7 +16,6 @@ export default function SignUp() {
 
   const handleChange = (e) => {
     const { value, name } = e.target;
-    console.log(value, name);
     setData((prevState) => ({ ...prevState, [name]: value }));
   };
 
