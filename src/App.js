@@ -4,6 +4,7 @@ import CategoryPage from './pages/CategoryPage';
 import MainPage from './pages/MainPage';
 import CategoryItemPage from './pages/CategoryItemPage';
 import NotFound from './pages/NotFound';
+import './app.css';
 
 function App() {
   const elements = useRoutes([
