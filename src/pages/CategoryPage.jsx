@@ -32,7 +32,7 @@ export default function CategoryPage() {
       <h2 className="text-2xl font-bold tracking-tight text-gray-900 text-center">
         {categories[category]}
       </h2>
-      <div className="w-[400px] m-auto mt-3">
+      <div className="w-[500px] m-auto mt-3">
         <List data={data} fields={fields} />
       </div>
     </div>
