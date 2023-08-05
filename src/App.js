@@ -4,6 +4,7 @@ import CategoryPage from './pages/CategoryPage';
 import MainPage from './pages/MainPage';
 import CategoryItemPage from './pages/CategoryItemPage';
 import NotFound from './pages/NotFound';
+import { AuthProvider } from './context/AuthProvider';
 import './app.css';
 
 function App() {
@@ -36,7 +37,7 @@ function App() {
     },
   ]);
 
-  return <>{elements}</>;
+  return <AuthProvider>{elements}</AuthProvider>;
 }
 
 export default App;
