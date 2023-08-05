@@ -19,10 +19,14 @@ export default function IndexLayout() {
   return (
     <div className="container mx-auto">
       <Nav />
-      {!isValidCategory ? (
-        <Navigate to="/404" replace={true} />
+      {category ? (
+        !isValidCategory ? (
+          <Navigate to="/404" replace={true} />
+        ) : (
+          <Outlet context={{ category, data: categoriesData[category] }} />
+        )
       ) : (
-        <Outlet context={{ category, data: categoriesData[category] }} />
+        <Outlet />
       )}
     </div>
   );
