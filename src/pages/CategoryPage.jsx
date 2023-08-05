@@ -6,14 +6,14 @@ import moment from 'moment/moment';
 export default function CategoryPage() {
   const { category, data } = useOutletContext();
 
-  const fields = [
-    {
+  const fields = {
+    name: {
       name: 'name',
       label: 'Name',
       value: (value) => value,
       sort: null,
     },
-    {
+    created: {
       name: 'created',
       label: 'Created',
       value: (value) => moment(value).format('YYYY-MM-DD HH:mm'),
@@ -26,8 +26,7 @@ export default function CategoryPage() {
         },
       },
     },
-  ];
-
+  };
   return (
     <div>
       <h2 className="text-2xl font-bold tracking-tight text-gray-900 text-center">
