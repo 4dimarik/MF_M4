@@ -4,6 +4,6 @@
 
 @layer components {
   .my-list {
-    @apply [&>div:first-child]:font-bold [&>.l-item]:p-2 [&>.l-item]:flex [&>.l-item>div:first-child]:w-[36px] [&>.l-item>div:first-child]:flex-none [&>.l-item>div]:text-center  [&>.l-item>div:not(:first-child)]:flex-1 [&>.l-item:not(:first-child):hover]:bg-blue-500 [&>.l-item:not(:first-child):hover]:cursor-pointer;
+    @apply [&>div:first-child]:font-bold [&>.l-item]:py-3 [&>.l-item]:flex [&>.l-item>div:first-child]:w-[36px] [&>.l-item>div:first-child]:flex-none [&>.l-item>div]:text-center  [&>.l-item>div:not(:first-child)]:flex-1 [&>.l-item:not(:first-child):hover]:bg-blue-500 [&>.l-item:not(:first-child):hover]:cursor-pointer;
   }
 }

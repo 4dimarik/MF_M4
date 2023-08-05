@@ -1,27 +1,31 @@
 import { NavLink } from 'react-router-dom';
 import categories from '../data/categories.json';
+import { HomeIcon } from '@heroicons/react/24/solid';
 
 export default function Nav() {
-  const linkClass = ' text-sm font-semibold leading-6';
+  const linkClass = (isActive) =>
+    `text-md font-semibold leading-6 ${
+      isActive ? 'text-blue-400' : 'text-gray-900'
+    }`;
   return (
-    <nav
-      className="flex items-center justify-between p-6 lg:px-8"
-      aria-label="Global"
-    >
-      <div className="lg:flex lg:gap-x-12">
-        {Object.keys(categories).map((item) => (
-          <NavLink
-            key={item}
-            to={`/${item}`}
-            className={({ isActive }) =>
-              isActive
-                ? `${linkClass}  text-yellow-500`
-                : `${linkClass} text-gray-900`
-            }
-          >
-            {categories[item]}
+    <nav>
+      <div className="flex flex-1 items-center justify-center py-3">
+        <div className="flex space-x-4">
+          <NavLink to="/" className={({ isActive }) => linkClass(isActive)}>
+            <div className="flex items-center h-[100%]">
+              <HomeIcon className="w-5 h-5 flex" />
+            </div>
           </NavLink>
-        ))}
+          {Object.keys(categories).map((item) => (
+            <NavLink
+              key={item}
+              to={`/${item}`}
+              className={({ isActive }) => linkClass(isActive)}
+            >
+              {categories[item]}
+            </NavLink>
+          ))}
+        </div>
       </div>
     </nav>
   );

@@ -19,12 +19,6 @@ function App() {
         {
           path: ':category',
           element: <CategoryPage />,
-          // children: [
-          //   {
-          //     path: ':id',
-          //     element: <CategoryItemPage />,
-          //   },
-          // ],
         },
         {
           path: ':category/:id',
