@@ -26,11 +26,15 @@ function App() {
             },
           ],
         },
-        {
-          path: '*',
-          element: <NotFound />,
-        },
       ],
+    },
+    {
+      path: '404',
+      element: <NotFound />,
+    },
+    {
+      path: '*',
+      element: <NotFound />,
     },
   ]);
 
