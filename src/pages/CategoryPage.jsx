@@ -1,6 +1,7 @@
 import { useOutletContext } from 'react-router-dom';
 import categories from '../data/categories.json';
 import List from '../components/List';
+import moment from 'moment/moment';
 
 export default function CategoryPage() {
   const { category, data } = useOutletContext();
@@ -9,10 +10,21 @@ export default function CategoryPage() {
     {
       name: 'name',
       label: 'Name',
+      value: (value) => value,
+      sort: null,
     },
     {
       name: 'created',
       label: 'Created',
+      value: (value) => moment(value).format('YYYY-MM-DD HH:mm'),
+      sort: {
+        asc: (a, b) => {
+          return moment(a.created).unix() - moment(b.created).unix();
+        },
+        desc: (a, b) => {
+          return moment(b.created).unix() - moment(a.created).unix();
+        },
+      },
     },
   ];
 
