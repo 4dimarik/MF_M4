@@ -3,12 +3,12 @@ import Nav from '../components/Nav';
 import categories from '../data/categories.json';
 import characters from '../data/characters.json';
 import episodes from '../data/episode.json';
-import location from '../data/location.json';
+import locations from '../data/location.json';
 
 const categoriesData = {
   characters,
   episodes,
-  location,
+  locations,
 };
 
 export default function IndexLayout() {
