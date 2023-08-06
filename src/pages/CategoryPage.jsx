@@ -11,14 +11,25 @@ export default function CategoryPage() {
   const location = useLocation();
   const { category, endpoint } = useOutletContext();
   const [pageNum, setPageNum] = useState(1);
+  const [itemList, setItemList] = useState([]);
+
   const { data, isLoading, error, refetch } = useFetch(
     'https://rickandmortyapi.com/api/' + endpoint,
     { params: { page: 1 } }
   );
 
   useEffect(() => {
+    setItemList([]);
+  }, [category]);
+
+  useEffect(() => {
+    if (data?.results) {
+      setItemList((prevState) => [...prevState, ...data.results]);
+    }
+  }, [data]);
+
+  useEffect(() => {
     if (pageNum > 1) {
-      console.log('Change pageNum: ', pageNum);
       refetch({
         params: {
           page: pageNum,
@@ -27,7 +38,7 @@ export default function CategoryPage() {
     }
   }, [pageNum]);
 
-  const results = data?.results;
+  // const results = data?.results;
   const hasMore = data?.info.pages !== pageNum;
 
   const handleOpenItemDetails = (id) => {
@@ -67,7 +78,7 @@ export default function CategoryPage() {
           <div>Ошибка. Повторите попытку позже.</div>
         ) : (
           <List
-            data={results}
+            data={itemList}
             fields={fields}
             handleOpenItemDetails={handleOpenItemDetails}
             infinitiScroll={{

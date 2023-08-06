@@ -4,17 +4,11 @@ import { ListHeader, ListBody } from './index';
 import './list.css';
 
 function List({ data, fields, handleOpenItemDetails, infinitiScroll }) {
-  const [itemList, setItemList] = useState([]);
-
   const { isLoading, hasMore, setPageNum } = infinitiScroll;
   const [sort, setSort] = useState({
     type: 'asc',
     func: undefined,
   });
-
-  useEffect(() => {
-    setItemList((prevState) => [...prevState, ...data]);
-  }, [data]);
 
   const toggleSort = (fieldName) => {
     const type = sort.type === 'asc' ? 'desc' : 'asc';
@@ -36,7 +30,6 @@ function List({ data, fields, handleOpenItemDetails, infinitiScroll }) {
       }
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting && hasMore) {
-          console.log('###: VISIBLE');
           setPageNum((prevState) => prevState + 1);
         }
       });
@@ -55,9 +48,9 @@ function List({ data, fields, handleOpenItemDetails, infinitiScroll }) {
       {fields && (
         <ListHeader fields={fields} handleSort={toggleSort} sort={sort} />
       )}
-      {itemList && (
+      {data && (
         <ListBody
-          data={itemList}
+          data={data}
           fields={fields}
           handleClick={handleClick}
           lastNodeRef={lastNodeRef}
