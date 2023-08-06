@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 function SignIn() {
   const [data, setData] = useState({ username: '', password: '' });
-  const [errors, setErrors] = useState(null);
+  const [errors, setErrors] = useState({});
   const auth = useAuth();
   const navigate = useNavigate();
 
@@ -16,19 +16,20 @@ function SignIn() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setErrors(null);
-    if (data?.username !== 'test')
+    setErrors({});
+    if (data?.username !== 'test') {
       setErrors((prevState) => ({
         ...prevState,
         username: 'Данный Логин не зарегистрирован',
       }));
+    }
     if (data?.password !== 'test123')
       setErrors((prevState) => ({
         ...prevState,
         password: 'Пароль неверный',
       }));
 
-    if (errors === null)
+    if (Object.keys(errors).length === 0)
       auth.signin(data?.username, () => {
         navigate('/');
       });
