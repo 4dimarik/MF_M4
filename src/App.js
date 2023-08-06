@@ -1,5 +1,4 @@
 import { useRoutes } from 'react-router-dom';
-import IndexLayout from './Layouts/IndexLayout';
 import CategoryPage from './pages/CategoryPage';
 import MainPage from './pages/MainPage';
 import CategoryItemPage from './pages/CategoryItemPage';
@@ -8,6 +7,7 @@ import { AuthProvider } from './context/AuthProvider';
 import './app.css';
 import SignInPage from './pages/SignInPage';
 import PrivateRoute from './components/PrivateRoute';
+import IndexLayout from './layouts/IndexLayout';
 
 function App() {
   const elements = useRoutes([
