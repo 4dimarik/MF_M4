@@ -6,6 +6,7 @@ import CategoryItemPage from './pages/CategoryItemPage';
 import NotFound from './pages/NotFound';
 import { AuthProvider } from './context/AuthProvider';
 import './app.css';
+import SignInPage from './pages/SignInPage';
 
 function App() {
   const elements = useRoutes([
@@ -26,6 +27,10 @@ function App() {
           element: <CategoryItemPage />,
         },
       ],
+    },
+    {
+      path: '/login',
+      element: <SignInPage />,
     },
     {
       path: '404',
