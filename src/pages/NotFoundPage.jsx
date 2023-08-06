@@ -1,6 +1,6 @@
 import ButtonBack from '../components/ButtonBack';
 
-export default function NotFound() {
+export default function NotFoundPage() {
   return (
     <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
       <div className="text-center">
