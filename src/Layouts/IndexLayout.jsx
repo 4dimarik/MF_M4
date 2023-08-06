@@ -4,6 +4,7 @@ import categories from '../data/categories.json';
 import characters from '../data/characters.json';
 import episodes from '../data/episode.json';
 import locations from '../data/location.json';
+import ErrorBoundary from '../ErrorBoundary';
 
 const categoriesData = {
   characters,
@@ -19,15 +20,17 @@ export default function IndexLayout() {
   return (
     <div className="container mx-auto">
       <Nav />
-      {category ? (
-        !isValidCategory ? (
-          <Navigate to="/404" replace={true} />
+      <ErrorBoundary>
+        {category ? (
+          !isValidCategory ? (
+            <Navigate to="/404" replace={true} />
+          ) : (
+            <Outlet context={{ category, data: categoriesData[category] }} />
+          )
         ) : (
-          <Outlet context={{ category, data: categoriesData[category] }} />
-        )
-      ) : (
-        <Outlet />
-      )}
+          <Outlet />
+        )}
+      </ErrorBoundary>
     </div>
   );
 }
