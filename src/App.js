@@ -7,6 +7,7 @@ import NotFound from './pages/NotFound';
 import { AuthProvider } from './context/AuthProvider';
 import './app.css';
 import SignInPage from './pages/SignInPage';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   const elements = useRoutes([
@@ -20,11 +21,19 @@ function App() {
         },
         {
           path: ':category',
-          element: <CategoryPage />,
+          element: (
+            <PrivateRoute>
+              <CategoryPage />
+            </PrivateRoute>
+          ),
         },
         {
           path: ':category/:id',
-          element: <CategoryItemPage />,
+          element: (
+            <PrivateRoute>
+              <CategoryItemPage />
+            </PrivateRoute>
+          ),
         },
       ],
     },
