@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import TextInput from './TextInput';
 import { useAuth } from '../context/AuthProvider';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function SignIn() {
   const [data, setData] = useState({ username: '', password: '' });
   const [errors, setErrors] = useState({});
   const auth = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from || '/';
 
   const handleChange = (e) => {
     const { value, name } = e.target;
@@ -32,10 +34,10 @@ function SignIn() {
       }));
       isValidForm = false;
     }
-
+    console.log(location);
     if (isValidForm)
       auth.signin(data?.username, () => {
-        navigate('/');
+        navigate(from, { replace: true });
       });
   };
 
