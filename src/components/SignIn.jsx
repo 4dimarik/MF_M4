@@ -34,7 +34,6 @@ function SignIn() {
       }));
       isValidForm = false;
     }
-    console.log(location);
     if (isValidForm)
       auth.signin(data?.username, () => {
         navigate(from, { replace: true });

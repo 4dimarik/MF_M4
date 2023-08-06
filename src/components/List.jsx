@@ -24,7 +24,6 @@ function List({ data, fields }) {
 
   const handleClick = ({ currentTarget }) => {
     const id = currentTarget.dataset?.id;
-    if (id) console.log('redirect');
     if (id) navigate(`${location.pathname}/${id}`);
   };
 
