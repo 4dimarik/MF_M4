@@ -13,11 +13,18 @@ export default function AuthStatus() {
     auth.signout(() => navigate('/'));
   };
 
+  console.log(auth);
+
   return (
     <>
       {auth.user ? (
-        (auth.user,
-        (<ArrowRightOnRectangleIcon className="w-5 h-5 cursor-pointer" onClick={handleSignOut} />))
+        <>
+          <span className="font-medium mr-3">{auth.user}</span>
+          <ArrowRightOnRectangleIcon
+            className="w-5 h-5 cursor-pointer"
+            onClick={handleSignOut}
+          />
+        </>
       ) : (
         <ArrowLeftOnRectangleIcon
           className="w-5 h-5 hover:cursor-pointer"
