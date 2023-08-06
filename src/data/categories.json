@@ -1,5 +1,5 @@
 {
-  "characters": "Герои",
-  "episodes": "Эпизоды",
-  "locations": "Локации"
+  "character": "Герои",
+  "episode": "Эпизоды",
+  "location": "Локации"
 }

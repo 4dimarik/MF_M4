@@ -3,12 +3,6 @@ import Nav from '../components/Nav';
 import categories from '../data/categories.json';
 import ErrorBoundary from '../ErrorBoundary';
 
-const categoryApiEndpoint = {
-  characters: 'character',
-  locations: 'location',
-  episodes: 'episode',
-};
-
 export default function IndexLayout() {
   const { category } = useParams();
 
@@ -22,9 +16,7 @@ export default function IndexLayout() {
           !isValidCategory ? (
             <Navigate to="/404" replace={true} />
           ) : (
-            <Outlet
-              context={{ category, endpoint: categoryApiEndpoint[category] }}
-            />
+            <Outlet context={{ category, endpoint: category }} />
           )
         ) : (
           <Outlet />
