@@ -17,19 +17,23 @@ function SignIn() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors({});
+    let isValidForm = true;
     if (data?.username !== 'test') {
       setErrors((prevState) => ({
         ...prevState,
         username: 'Данный Логин не зарегистрирован',
       }));
+      isValidForm = false;
     }
-    if (data?.password !== 'test123')
+    if (data?.password !== 'test123') {
       setErrors((prevState) => ({
         ...prevState,
         password: 'Пароль неверный',
       }));
+      isValidForm = false;
+    }
 
-    if (Object.keys(errors).length === 0)
+    if (isValidForm)
       auth.signin(data?.username, () => {
         navigate('/');
       });

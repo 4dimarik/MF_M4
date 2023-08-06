@@ -13,8 +13,6 @@ export default function AuthStatus() {
     auth.signout(() => navigate('/'));
   };
 
-  console.log(auth);
-
   return (
     <>
       {auth.user ? (
