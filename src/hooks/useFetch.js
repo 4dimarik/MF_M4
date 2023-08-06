@@ -40,7 +40,7 @@ function useFetch(url, options) {
 
   useEffect(() => {
     fetchData(options);
-  }, []);
+  }, [url]);
 
   return { ...response, refetch: fetchData };
 }
