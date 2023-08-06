@@ -8,14 +8,14 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }) {
-  const [user, { setItem, removeItem }] = useLocalStorage('token');
+  const [user, { setItem, removeItem }] = useLocalStorage('user');
 
   const signin = (newUser, callback) => {
     setItem(newUser);
     callback();
   };
 
-  const signout = (newUser, callback) => {
+  const signout = (callback) => {
     setItem(null);
     callback();
   };
