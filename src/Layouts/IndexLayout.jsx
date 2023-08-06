@@ -1,15 +1,12 @@
 import { Navigate, Outlet, useParams } from 'react-router-dom';
 import Nav from '../components/Nav';
 import categories from '../data/categories.json';
-import characters from '../data/characters.json';
-import episodes from '../data/episode.json';
-import locations from '../data/location.json';
 import ErrorBoundary from '../ErrorBoundary';
 
-const categoriesData = {
-  characters,
-  episodes,
-  locations,
+const categoryApiEndpoint = {
+  characters: 'character',
+  locations: 'location',
+  episodes: 'episode',
 };
 
 export default function IndexLayout() {
@@ -25,7 +22,9 @@ export default function IndexLayout() {
           !isValidCategory ? (
             <Navigate to="/404" replace={true} />
           ) : (
-            <Outlet context={{ category, data: categoriesData[category] }} />
+            <Outlet
+              context={{ category, endpoint: categoryApiEndpoint[category] }}
+            />
           )
         ) : (
           <Outlet />
