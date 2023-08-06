@@ -1,10 +1,38 @@
-import { useOutletContext } from 'react-router-dom';
+import { useOutletContext, useNavigate, useLocation } from 'react-router-dom';
 import categories from '../data/categories.json';
-import List from '../components/List';
+import List from '../components/ListComponent';
 import moment from 'moment/moment';
+import Loader from '../components/Loader';
+import { useFetch } from '../hooks/useFetch';
+import { useState, useEffect } from 'react';
 
 export default function CategoryPage() {
-  const { category, data } = useOutletContext();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { category, endpoint } = useOutletContext();
+  const [pageNum, setPageNum] = useState(1);
+  const { data, isLoading, error, refetch } = useFetch(
+    'https://rickandmortyapi.com/api/' + endpoint,
+    { params: { page: 1 } }
+  );
+
+  useEffect(() => {
+    if (pageNum > 1) {
+      console.log('Change pageNum: ', pageNum);
+      refetch({
+        params: {
+          page: pageNum,
+        },
+      });
+    }
+  }, [pageNum]);
+
+  const results = data?.results;
+  const hasMore = data?.info.pages !== pageNum;
+
+  const handleOpenItemDetails = (id) => {
+    navigate(`${location.pathname}/${id}`);
+  };
 
   const fields = {
     name: {
@@ -33,7 +61,22 @@ export default function CategoryPage() {
         {categories[category]}
       </h2>
       <div className="w-[80%] m-auto mt-3">
-        <List data={data} fields={fields} />
+        {isLoading ? (
+          <Loader />
+        ) : error ? (
+          <div>Ошибка. Повторите попытку позже.</div>
+        ) : (
+          <List
+            data={results}
+            fields={fields}
+            handleOpenItemDetails={handleOpenItemDetails}
+            infinitiScroll={{
+              isLoading,
+              hasMore,
+              setPageNum,
+            }}
+          />
+        )}
       </div>
     </>
   );
