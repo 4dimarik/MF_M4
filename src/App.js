@@ -1,13 +1,16 @@
+import { lazy } from 'react';
 import { useRoutes } from 'react-router-dom';
-import CategoryPage from './pages/CategoryPage';
-import MainPage from './pages/MainPage';
-import CategoryItemPage from './pages/CategoryItemPage';
-import NotFound from './pages/NotFound';
 import { AuthProvider } from './context/AuthProvider';
 import './app.css';
-import SignInPage from './pages/SignInPage';
 import PrivateRoute from './components/PrivateRoute';
 import IndexLayout from './layouts/IndexLayout';
+import SuspenseComponent from './components/SuspenseComponent';
+
+const MainPage = lazy(() => import('./pages/MainPage'));
+const CategoryPage = lazy(() => import('./pages/CategoryPage'));
+const CategoryItemPage = lazy(() => import('./pages/CategoryItemPage'));
+const SignInPage = lazy(() => import('./pages/SignInPage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 function App() {
   const elements = useRoutes([
@@ -23,7 +26,9 @@ function App() {
           path: ':category',
           element: (
             <PrivateRoute>
-              <CategoryPage />
+              <SuspenseComponent>
+                <CategoryPage />
+              </SuspenseComponent>
             </PrivateRoute>
           ),
         },
@@ -31,7 +36,9 @@ function App() {
           path: ':category/:id',
           element: (
             <PrivateRoute>
-              <CategoryItemPage />
+              <SuspenseComponent>
+                <CategoryItemPage />
+              </SuspenseComponent>
             </PrivateRoute>
           ),
         },
@@ -39,15 +46,27 @@ function App() {
     },
     {
       path: '/login',
-      element: <SignInPage />,
+      element: (
+        <SuspenseComponent>
+          <SignInPage />
+        </SuspenseComponent>
+      ),
     },
     {
       path: '404',
-      element: <NotFound />,
+      element: (
+        <SuspenseComponent>
+          <NotFoundPage />
+        </SuspenseComponent>
+      ),
     },
     {
       path: '*',
-      element: <NotFound />,
+      element: (
+        <SuspenseComponent>
+          <NotFoundPage />
+        </SuspenseComponent>
+      ),
     },
   ]);
 
